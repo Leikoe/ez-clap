@@ -64,7 +64,7 @@ for question in questions[1:]:
     elif question_type == "LabelAnImage":
         correct_answers = question["legends"]
         for i, s in enumerate(correct_answers):
-            answer = s["synonyms"]
+            answer = "'" + "' or '".join(s["synonyms"]) + "'"
             print(f"Answer #{i} | choice: {answer}")
     elif question_type == "MCQ":
         answers = question["choices"]
