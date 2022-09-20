@@ -6,7 +6,7 @@ import random
 
 
 def print_sep():
-    print("#######################################################################################")
+    print("\n#######################################################################################\n")
 
 def generate_token():
     presentDate = datetime.datetime.now()
@@ -17,11 +17,11 @@ def generate_token():
 TOKEN = generate_token()
 BEARER = f"bearer {TOKEN}"
 
-print(TOKEN)
+print(f"GENERATED TOKEN: {TOKEN}\n")
 
 QUIZ_ID = ""
 if QUIZ_ID == "":
-    QUIZ_ID = input("QUIDZ_ID ?\n")
+    QUIZ_ID = input("QUIDZ_ID ?\n> ")
 
 print_sep()
 
@@ -51,6 +51,7 @@ for question in questions[1:]:
         question_is_correctable = True
     question_id = question["_id"]
     prompt = question["title"]
+    print(f"[question_type: {question_type}]")
     print(f"Prompt: {prompt}\n")
 
     if question_type == "Matching":
@@ -73,12 +74,12 @@ for question in questions[1:]:
             choice_id = answer["_id"]
             choice_choice = answer["choice"]
             choice_is_correct = answer["isCorrect"]
-            print(f"Answer #{choice_id} | choice: {choice_choice} | isCorrect: {choice_is_correct}")
+            print(f"{'[O]' if choice_is_correct else '[X]'} Answer #{choice_id} | choice: {choice_choice} | isCorrect: {choice_is_correct}")
             if choice_is_correct:
                 correct_answers.append(choice_id)
     
     else:
-        print("couldn't find answers")
+        print("[X] Could not find answers")
         
         
         #send_answers(question_id, correct_answers)
